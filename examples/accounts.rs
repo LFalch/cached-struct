@@ -31,7 +31,7 @@ impl Cache for Accounts {
 
 fn main() -> Result<()> {
     let mut cached_accounts = Cached::<Accounts>::new("test/accounts.txt")?;
-    cached_accounts.get_mut()?.0.insert("test".to_owned(), -40);
+    cached_accounts.do_mut(|i| i.0.insert("test".to_owned(), -40))?;
 
     println!("{:?}", cached_accounts.get()?.0);
 
